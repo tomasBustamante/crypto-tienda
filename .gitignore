@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # abis
-client/src/contracts/*
+client/src/contracts/
