@@ -47,12 +47,12 @@ contract CryptoTienda {
         productos[cantidadProductos] = Producto(cantidadProductos, _nombre, _precio, msg.sender, false);
         
         // Disparar un evento
-        emit ProductCreated(cantidadProductos, _nombre, _precio, msg.sender, false);
+        emit ProductoCreado(cantidadProductos, _nombre, _precio, msg.sender, false);
     }
 
     function comprarProducto(uint _id) public payable {
         // Buscar el producto
-        Product memory _producto = productos[_id];
+        Producto memory _producto = productos[_id];
 
         // Buscar el duenio de ese producto
         address payable _vendedor = _producto.duenio;
@@ -82,6 +82,6 @@ contract CryptoTienda {
         address(_vendedor).transfer(msg.value);
 
         // Disparar un evento
-        emit ProductPurchased(cantidadProductos, _producto.nombre, _producto.precio, msg.sender, true);
+        emit ProductoComprado(cantidadProductos, _producto.nombre, _producto.precio, msg.sender, true);
     }
 }
