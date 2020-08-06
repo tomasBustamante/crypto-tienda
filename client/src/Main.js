@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const Component = () => (
+const Main = () => (
   <div id="content">
     <h1>Add Product</h1>
     <form
