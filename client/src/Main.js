@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Main = ({ productos, crearProducto, comprarProducto }) => {
   const [nombreProducto, setNombreProducto] = useState();
@@ -63,7 +64,7 @@ const Main = ({ productos, crearProducto, comprarProducto }) => {
             return (
               <tr key={key}>
                 <th scope="row">{producto.id.toString()}</th>
-                <td>{producto.name}</td>
+                <td>{producto.nombre}</td>
                 <td>
                   {window.web3.utils.fromWei(
                     producto.precio.toString(),
@@ -92,6 +93,17 @@ const Main = ({ productos, crearProducto, comprarProducto }) => {
       </table>
     </div>
   );
+};
+
+Main.propTypes = {
+  productos: PropTypes.arrayOf({
+    id: PropTypes.string,
+    nombre: PropTypes.string,
+    duenio: PropTypes.string,
+    precio: PropTypes.number,
+  }).isRequired,
+  crearProducto: PropTypes.func,
+  comprarProducto: PropTypes.func,
 };
 
 export default Main;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Navbar = ({ account }) => (
   <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -19,5 +20,9 @@ const Navbar = ({ account }) => (
     </ul>
   </nav>
 );
+
+Navbar.propTypes = {
+  account: PropTypes.string.isRequired,
+};
 
 export default Navbar;
