@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Web3 from "web3";
-// import logo from "./logo.png";
 import "./App.css";
 import CryptoTienda from "./contracts/CryptoTienda.json";
 import Navbar from "./Navbar";
