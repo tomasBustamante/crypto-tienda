@@ -1,6 +1,7 @@
-# Crypto Tienda
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8ddb3b94e73045c68e3b7721c3b3fca4)](https://www.codacy.com/manual/tomasBustamante/crypto-tienda?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tomasBustamante/crypto-tienda&amp;utm_campaign=Badge_Grade)
+![GitHub](https://img.shields.io/github/license/tomasBustamante/crypto-tienda)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/df47b7a5ca36487082a64c910f2e8e77)](https://app.codacy.com/manual/tomasBustamante/truffle-react?utm_source=github.com&utm_medium=referral&utm_content=tomasBustamante/truffle-react&utm_campaign=Badge_Grade_Dashboard)
+# Crypto Tienda
 
 ## Pre-requisitos
 
@@ -16,7 +17,7 @@ npm i
 
 ## Ejecución local
 
-### Server side
+### Servidor
 
 ```console
 truffle develop
