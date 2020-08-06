@@ -39,11 +39,11 @@ class App extends Component {
       this.setState({ cryptoTienda });
       const cantidadProductos = await cryptoTienda.methods.cantidadProductos().call();
       this.setState({ cantidadProductos });
-      // Load products
+      // Load productos
       for (var i = 1; i <= cantidadProductos; i++) {
         const product = await cryptoTienda.methods.productos(i).call();
         this.setState({
-          products: [...this.state.products, product],
+          productos: [...this.state.productos, product],
         });
       }
       this.setState({ loading: false });
@@ -57,7 +57,7 @@ class App extends Component {
     this.state = {
       account: "",
       cantidadProductos: 0,
-      products: [],
+      productos: [],
       loading: true,
     };
 
@@ -98,7 +98,7 @@ class App extends Component {
                 </div>
               ) : (
                 <Main
-                  products={this.state.products}
+                  productos={this.state.productos}
                   crearProducto={this.crearProducto}
                   comprarProducto={this.comprarProducto}
                 />
