@@ -40,8 +40,7 @@ contract CryptoTienda {
         // Requerir un precio valido
         require(_precio > 0);
 
-        // Incrementar la cantidad de productos
-        cantidadProductos ++;
+        cantidadProductos++;
 
         // Crear el producto
         productos[cantidadProductos] = Producto(cantidadProductos, _nombre, _precio, msg.sender, false);
