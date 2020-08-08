@@ -52,7 +52,7 @@ const App = () => {
     };
     loadWeb3();
     loadBlockchainData();
-  });
+  }, []);
 
   const crearProducto = (nombre, precio) => {
     setLoading(true);
