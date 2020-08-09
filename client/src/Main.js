@@ -103,6 +103,9 @@ const Main = ({ productos, crearProducto, comprarProducto }) => {
           columns={columns}
           dataSource={rows}
           pagination={{ position: ["bottomCenter"] }}
+          locale={{
+            emptyText: <p>No hay productos disponibles.</p>,
+          }}
         />
       </div>
     </>
