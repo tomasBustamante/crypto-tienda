@@ -44,10 +44,12 @@ const App = () => {
           .cantidadProductos()
           .call();
         // Cargar productos
+        let _productos = [];
         for (let i = 1; i <= cantidadProductos; i++) {
           const producto = await cryptoTienda.methods.productos(i).call();
-          setProductos([...productos, producto]);
+          _productos = [..._productos, producto];
         }
+        setProductos(_productos);
         setLoading(false);
       } else {
         window.alert("CryptoTienda contract not deployed to detected network.");
