@@ -1,7 +1,7 @@
 import "./styles.css";
 import React, { useEffect, useState } from "react";
 import Web3 from "web3";
-import CryptoTienda from "./contracts/CryptoTienda.json";
+import CryptoTienda from "../contracts/CryptoTienda.json";
 import { Layout } from "antd";
 import Navbar from "./Navbar";
 import Main from "./Main";
