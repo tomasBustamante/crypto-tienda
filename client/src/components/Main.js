@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Spin } from "antd";
+import { Tabs, Typography, Spin } from "antd";
 import AltaProductos from "./AltaProductos";
 import TablaProductos from "./TablaProductos";
 
 const { Title } = Typography;
+const { TabPane } = Tabs;
 
 const Main = ({ productos, crearProducto, comprarProducto, loading }) => (
   <>
@@ -17,12 +18,18 @@ const Main = ({ productos, crearProducto, comprarProducto, loading }) => (
       )}
       {!loading && (
         <>
-          <AltaProductos crearProducto={crearProducto} />
+          <Tabs defaultActiveKey="AltaProductos" style={{ height: 220 }}>
+            <TabPane key="AltaProductos" tab="Alta de Productos">
+              <AltaProductos crearProducto={crearProducto} />
+            </TabPane>
+            <TabPane key="TablaProductos" tab="Compra de productos">
+              <TablaProductos
+                productos={productos}
+                comprarProducto={comprarProducto}
+              />
+            </TabPane>
+          </Tabs>
           <p>&nbsp;</p>
-          <TablaProductos
-            productos={productos}
-            comprarProducto={comprarProducto}
-          />
         </>
       )}
     </div>
