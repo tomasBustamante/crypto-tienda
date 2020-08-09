@@ -1,9 +1,12 @@
+import "./styles.css";
 import React, { useEffect, useState } from "react";
 import Web3 from "web3";
-import "./App.css";
 import CryptoTienda from "./contracts/CryptoTienda.json";
+import { Layout } from "antd";
 import Navbar from "./Navbar";
 import Main from "./Main";
+
+const { Header, Content } = Layout;
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -75,26 +78,24 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Navbar account={account} />
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <main role="main" className="col-lg-12 d-flex">
-            {loading ? (
-              <div id="loader" className="text-center">
-                <p className="text-center">Loading...</p>
-              </div>
-            ) : (
-              <Main
-                productos={productos}
-                crearProducto={crearProducto}
-                comprarProducto={comprarProducto}
-              />
-            )}
-          </main>
-        </div>
-      </div>
-    </div>
+    <Layout className="Layout">
+      <Header>
+        <Navbar account={account} />
+      </Header>
+      <Content className="Content">
+        {loading ? (
+          <div id="loader" className="text-center">
+            <p className="text-center">Loading...</p>
+          </div>
+        ) : (
+          <Main
+            productos={productos}
+            crearProducto={crearProducto}
+            comprarProducto={comprarProducto}
+          />
+        )}
+      </Content>
+    </Layout>
   );
 };
 

@@ -1,97 +1,111 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { Form, Input, InputNumber, Button, Table, Typography } from "antd";
+
+const { Title } = Typography;
 
 const Main = ({ productos, crearProducto, comprarProducto }) => {
-  const [nombreProducto, setNombreProducto] = useState();
-  const [precioProducto, setPrecioProducto] = useState();
+  const onFinish = (values) => {
+    const { nombreProducto, precioProducto } = values;
+    const precio = window.web3.utils.toWei(precioProducto.toString(), "Ether");
+    crearProducto(nombreProducto, precio);
+  };
+
+  const columns = [
+    {
+      title: "#",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Nombre",
+      dataIndex: "nombre",
+      key: "nombre",
+    },
+    {
+      title: "Precio",
+      dataIndex: "precio",
+      key: "precio",
+    },
+    {
+      title: "Dueño",
+      dataIndex: "duenio",
+      key: "duenio",
+    },
+    {
+      title: "Acciones",
+      key: "actions",
+      render: (text, record) => (
+        <Button
+          size="small"
+          disabled={record.purchased}
+          onClick={(event) => {
+            comprarProducto(event.target.name, event.target.value);
+          }}
+        >
+          Comprar
+        </Button>
+      ),
+    },
+  ];
+
+  const rows = productos.map(({ id, precio, ...rest }, key) => ({
+    key,
+    id: id.toString(),
+    precio: `${window.web3.utils.fromWei(precio.toString(), "Ether")} Eth`,
+    ...rest,
+  }));
 
   return (
-    <div id="content">
-      <h1>Agregar producto</h1>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          const name = nombreProducto.value;
-          const precio = window.web3.utils.toWei(
-            precioProducto.value.toString(),
-            "Ether"
-          );
-          crearProducto(name, precio);
-        }}
-      >
-        <div className="form-group mr-sm-2">
-          <input
-            id="nombreProducto"
-            type="text"
-            ref={(input) => {
-              setNombreProducto(input);
-            }}
-            className="form-control"
-            placeholder="Nombre del producto"
-            required
-          />
-        </div>
-        <div className="form-group mr-sm-2">
-          <input
-            id="precioProducto"
-            type="text"
-            ref={(input) => {
-              setPrecioProducto(input);
-            }}
-            className="form-control"
-            placeholder="Precio del producto"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Agregar producto
-        </button>
-      </form>
-      <p>&nbsp;</p>
-      <h2>Comprar producto</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Dueño</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody id="productList">
-          {productos.map((producto, key) => {
-            return (
-              <tr key={key}>
-                <th scope="row">{producto.id.toString()}</th>
-                <td>{producto.nombre}</td>
-                <td>
-                  {window.web3.utils.fromWei(
-                    producto.precio.toString(),
-                    "Ether"
-                  )}{" "}
-                  Eth
-                </td>
-                <td>{producto.duenio}</td>
-                <td>
-                  {!producto.purchased ? (
-                    <button
-                      name={producto.id}
-                      value={producto.precio}
-                      onClick={(event) => {
-                        comprarProducto(event.target.name, event.target.value);
-                      }}
-                    >
-                      Comprar
-                    </button>
-                  ) : null}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <Title style={{ margin: "16px 0", textAlign: "center" }}>
+        Crypto Tienda
+      </Title>
+      <div id="content" className="site-layout-content">
+        <Title level={2}>Agregar producto</Title>
+        <Form
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 8 }}
+          name="basic"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+        >
+          <Form.Item
+            label="Nombre del producto"
+            name="nombreProducto"
+            rules={[
+              { required: true, message: "¡Por favor ingresá el nombre!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Precio del producto"
+            name="precioProducto"
+            rules={[
+              {
+                required: true,
+                message: "¡Por favor ingresá un valor numérico en el precio!",
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
+            <Button type="primary" htmlType="submit">
+              Agregar producto
+            </Button>
+          </Form.Item>
+        </Form>
+        <p>&nbsp;</p>
+        <Title level={2}>Comprar producto</Title>
+        <Table
+          columns={columns}
+          dataSource={rows}
+          pagination={{ position: ["bottomCenter"] }}
+        />
+      </div>
+    </>
   );
 };
 
@@ -101,7 +115,7 @@ Main.propTypes = {
       id: PropTypes.string,
       nombre: PropTypes.string,
       duenio: PropTypes.string,
-      precio: PropTypes.number,
+      precio: PropTypes.string,
     })
   ).isRequired,
   crearProducto: PropTypes.func,
