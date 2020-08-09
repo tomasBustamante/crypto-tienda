@@ -32,7 +32,7 @@ const TablaProductos = ({ productos, comprarProducto }) => {
       render: (text, record) => (
         <Button
           size="small"
-          disabled={record.purchased}
+          disabled={record.comprado}
           onClick={(event) => {
             comprarProducto(event.target.name, event.target.value);
           }}
