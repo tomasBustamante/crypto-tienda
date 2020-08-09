@@ -15,7 +15,7 @@ const AltaProductos = ({ crearProducto }) => {
     <>
       <Title level={2}>Agregar producto</Title>
       <Form
-        labelCol={{ span: 4 }}
+        labelCol={{ span: 5 }}
         wrapperCol={{ span: 8 }}
         name="basic"
         initialValues={{ remember: true }}
