@@ -1,5 +1,6 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8ddb3b94e73045c68e3b7721c3b3fca4)](https://www.codacy.com/manual/tomasBustamante/crypto-tienda?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tomasBustamante/crypto-tienda&amp;utm_campaign=Badge_Grade)
 ![GitHub](https://img.shields.io/github/license/tomasBustamante/crypto-tienda)
+[![Build Status](https://travis-ci.com/tomasBustamante/crypto-tienda.svg?branch=master)](https://travis-ci.com/tomasBustamante/crypto-tienda)
 
 # Crypto Tienda
 
