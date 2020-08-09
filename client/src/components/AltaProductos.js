@@ -40,7 +40,7 @@ const AltaProductos = ({ crearProducto }) => {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
+        <Form.Item wrapperCol={{ offset: 5, span: 8 }}>
           <Button type="primary" htmlType="submit">
             Agregar producto
           </Button>
