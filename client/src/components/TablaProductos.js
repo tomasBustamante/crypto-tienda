@@ -29,17 +29,22 @@ const TablaProductos = ({ productos, comprarProducto }) => {
     {
       title: "Acciones",
       key: "actions",
-      render: (text, record) => (
-        <Button
-          size="small"
-          disabled={record.comprado}
-          onClick={(event) => {
-            comprarProducto(event.target.name, event.target.value);
-          }}
-        >
-          Comprar
-        </Button>
-      ),
+      render: (text, record) => {
+        const producto = productos.find(
+          ({ id }) => record.id === id.toString()
+        );
+        return (
+          <Button
+            size="small"
+            disabled={record.comprado}
+            onClick={(event) => {
+              comprarProducto(producto.id, producto.precio);
+            }}
+          >
+            Comprar
+          </Button>
+        );
+      },
     },
   ];
 
