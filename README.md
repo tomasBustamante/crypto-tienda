@@ -39,7 +39,9 @@ npm run start
 
 ## Ejecución de las pruebas
 
-TBC
+```console
+truffle test
+```
 
 ## Licencia
 
