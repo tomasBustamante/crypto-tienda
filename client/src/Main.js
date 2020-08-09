@@ -96,12 +96,14 @@ const Main = ({ productos, crearProducto, comprarProducto }) => {
 };
 
 Main.propTypes = {
-  productos: PropTypes.arrayOf({
-    id: PropTypes.string,
-    nombre: PropTypes.string,
-    duenio: PropTypes.string,
-    precio: PropTypes.number,
-  }).isRequired,
+  productos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      nombre: PropTypes.string,
+      duenio: PropTypes.string,
+      precio: PropTypes.number,
+    })
+  ).isRequired,
   crearProducto: PropTypes.func,
   comprarProducto: PropTypes.func,
 };
