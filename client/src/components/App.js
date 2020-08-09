@@ -83,17 +83,12 @@ const App = () => {
         <Navbar account={account} />
       </Header>
       <Content className="Content">
-        {loading ? (
-          <div id="loader" className="text-center">
-            <p className="text-center">Loading...</p>
-          </div>
-        ) : (
-          <Main
-            productos={productos}
-            crearProducto={crearProducto}
-            comprarProducto={comprarProducto}
-          />
-        )}
+        <Main
+          loading={loading}
+          productos={productos}
+          crearProducto={crearProducto}
+          comprarProducto={comprarProducto}
+        />
       </Content>
     </Layout>
   );
