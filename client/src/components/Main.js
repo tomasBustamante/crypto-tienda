@@ -18,7 +18,7 @@ const Main = ({ productos, crearProducto, comprarProducto, loading }) => (
       )}
       {!loading && (
         <>
-          <Tabs defaultActiveKey="AltaProductos" style={{ height: 220 }}>
+          <Tabs defaultActiveKey="AltaProductos" style={{ height: 320 }}>
             <TabPane key="AltaProductos" tab="Alta de Productos">
               <AltaProductos crearProducto={crearProducto} />
             </TabPane>
