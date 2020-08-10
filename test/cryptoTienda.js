@@ -1,6 +1,7 @@
 const CryptoTienda = artifacts.require("./CryptoTienda.sol");
 
 require("chai").use(require("chai-as-promised")).should();
+const assert = require('assert');
 
 contract("CryptoTienda", (accounts) => {
   let cryptoTienda;
