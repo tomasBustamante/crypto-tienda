@@ -59,5 +59,34 @@ contract("CryptoTienda", accounts => {
       assert.equal(producto.duenio, accounts[0], 'dueño es correcto');
       assert.equal(producto.comprado, false, 'no está comprado es correcto');
     });
+
+    it('venta de productos correcto', async () => {
+      const vendedor = accounts[0];
+      const comprador = accounts[1];
+      await cryptoTienda.crearProducto('iPhone X', web3.utils.toWei('1', 'Ether'), { from: vendedor });
+      const totalProductos = await cryptoTienda.cantidadProductos();
+      let saldoInicialVendedor = await web3.eth.getBalance(vendedor);
+      saldoInicialVendedor = new web3.utils.BN(saldoInicialVendedor);
+
+      resultado = await cryptoTienda.comprarProducto(totalProductos, { from: comprador, value: web3.utils.toWei('1', 'Ether')})
+      
+      const evento = resultado.logs[0].args
+      assert.equal(evento.id.toNumber(), totalProductos.toNumber(), 'id es correcto')
+      assert.equal(evento.nombre, 'iPhone X', 'name es correcto')
+      assert.equal(evento.precio, '1000000000000000000', 'precio es correcto')
+      assert.equal(evento.duenio, comprador, 'duenio es correcto')
+      assert.equal(evento.comprado, true, 'está comprado es correcto')
+
+      // Verificar que el vendedor recibió los fondos
+      let saldoFinalVendedor = await web3.eth.getBalance(vendedor)
+      saldoFinalVendedor = new web3.utils.BN(saldoFinalVendedor)
+
+      let precio = web3.utils.toWei('1', 'Ether')
+      precio = new web3.utils.BN(precio)
+
+      const saldoEsperado = saldoInicialVendedor.add(precio)
+
+      assert.equal(saldoFinalVendedor.toString(), saldoEsperado.toString())
+    });
   });
 });
