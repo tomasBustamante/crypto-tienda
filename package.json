@@ -1,0 +1,31 @@
+{
+  "name": "crypto-tienda",
+  "version": "1.0.0",
+  "description": "dApp tienda virtual",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasBustamante/crypto-tienda.git"
+  },
+  "keywords": [
+    "solidity",
+    "dApp",
+    "smart-contract"
+  ],
+  "author": "Grupo 1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomasBustamante/crypto-tienda/issues"
+  },
+  "homepage": "https://github.com/tomasBustamante/crypto-tienda#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1"
+  }
+}

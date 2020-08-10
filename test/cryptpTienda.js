@@ -1,5 +1,9 @@
 const CryptoTienda = artifacts.require("./CryptoTienda.sol");
 
+require('chai')
+  .use(require('chai-as-promised'))
+  .should();
+
 contract("CryptoTienda", accounts => {
   let cryptoTienda;
 
@@ -34,6 +38,10 @@ contract("CryptoTienda", accounts => {
       assert.equal(evento.precio, '1000000000000000000', 'precio es correcto');
       assert.equal(evento.duenio, accounts[0], 'dueño es correcto');
       assert.equal(evento.comprado, false, 'no está comprado es correcto');
+    })
+
+    it('no se crea producto sin nombre', async () => {
+      await await cryptoTienda.crearProducto('', web3.utils.toWei('1', 'Ether'), { from: accounts[0] }).should.be.rejected;
     })
   });
 });
