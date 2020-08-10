@@ -47,5 +47,17 @@ contract("CryptoTienda", accounts => {
     it('no se crea producto con precio inválido', async () => {
       await await cryptoTienda.crearProducto('Notebook', 0, { from: accounts[0] }).should.be.rejected;
     });
+
+    it('obtener el listado de productos', async () => {
+      await cryptoTienda.crearProducto('Samsung S20', web3.utils.toWei('1', 'Ether'), { from: accounts[0] });
+      const totalProductos = await cryptoTienda.cantidadProductos();
+
+      const producto = await cryptoTienda.productos(totalProductos)
+      assert.equal(producto.id.toNumber(), totalProductos.toNumber(), 'id es correcto');
+      assert.equal(producto.nombre, 'Samsung S20', 'nombre es correcto');
+      assert.equal(producto.precio, '1000000000000000000', 'precio es correcto');
+      assert.equal(producto.duenio, accounts[0], 'dueño es correcto');
+      assert.equal(producto.comprado, false, 'no está comprado es correcto');
+    });
   });
 });
