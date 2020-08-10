@@ -25,7 +25,16 @@
   },
   "homepage": "https://github.com/tomasBustamante/crypto-tienda#readme",
   "devDependencies": {
+    "@commitlint/config-conventional": "9.1.1",
     "chai": "4.2.0",
-    "chai-as-promised": "7.1.1"
+    "chai-as-promised": "7.1.1",
+    "commitlint": "9.1.0",
+    "eslint": "7.6.0",
+    "husky": "4.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
