@@ -96,7 +96,7 @@ contract("CryptoTienda", (accounts) => {
       let saldoInicialVendedor = await web3.eth.getBalance(vendedor);
       saldoInicialVendedor = new web3.utils.BN(saldoInicialVendedor);
 
-      resultado = await cryptoTienda.comprarProducto(totalProductos, {
+      const resultado = await cryptoTienda.comprarProducto(totalProductos, {
         from: comprador,
         value: web3.utils.toWei("1", "Ether"),
       });
