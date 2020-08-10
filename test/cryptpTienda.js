@@ -88,5 +88,10 @@ contract("CryptoTienda", accounts => {
 
       assert.equal(saldoFinalVendedor.toString(), saldoEsperado.toString())
     });
+
+    it('no se puede comprar un producto que no existe', async () => {
+      await cryptoTienda.comprarProducto(99, { from: accounts[0], value: web3.utils.toWei('1', 'Ether')}).should.be.rejected;
+    });
+
   });
 });
