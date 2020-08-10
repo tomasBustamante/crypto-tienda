@@ -144,5 +144,19 @@ contract("CryptoTienda", (accounts) => {
         value: web3.utils.toWei('0.5', 'Ether')
       }).should.be.rejected;
     });
+
+    it("el vendedor no puede comprar el producto que vende", async () => {
+      await cryptoTienda.crearProducto(
+        "Samsung S20",
+        web3.utils.toWei('1', 'Ether'),
+        { from: accounts[0] }
+      );
+      const totalProductos = await cryptoTienda.cantidadProductos();
+      
+      await cryptoTienda.comprarProducto(totalProductos,{
+        from: accounts[0],
+        value: web3.utils.toWei('1', 'Ether')
+      }).should.be.rejected;
+    });
   });
 });
