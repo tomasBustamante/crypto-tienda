@@ -147,15 +147,16 @@ contract("CryptoTienda", (accounts) => {
     });
 
     it("el vendedor no puede comprar el producto que vende", async () => {
+      const vendedor = accounts[0];
       await cryptoTienda.crearProducto(
         "Samsung S20",
         web3.utils.toWei('1', 'Ether'),
-        { from: accounts[0] }
+        { from: vendedor }
       );
       const totalProductos = await cryptoTienda.cantidadProductos();
       
       await cryptoTienda.comprarProducto(totalProductos,{
-        from: accounts[0],
+        from: vendedor,
         value: web3.utils.toWei('1', 'Ether')
       }).should.be.rejected;
     });
