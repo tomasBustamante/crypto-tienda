@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/tomasBustamante/crypto-tienda#readme",
   "devDependencies": {
-    "@commitlint/config-conventional": "9.1.1",
+    "@commitlint/config-conventional": "17.4.4",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "commitlint": "9.1.0",
